@@ -1,9 +1,9 @@
-# Image Scanning Policies
+# Image Scanning Policies
 
 Add the following Image Scanning policies in Sysdig secure:
 
 
-## Blocking images running as root
+## Blocking images running as root
 
 * Gate: Dockerfile
 * Sub-type: Effective user
@@ -13,7 +13,7 @@ Add the following Image Scanning policies in Sysdig secure:
 * Action: Stop
 
 
-## Stop secrets from being leaked
+## Stop secrets from being leaked
 
 * Gate: Secret scans
 * Sub-type: Content regex checks
@@ -24,7 +24,7 @@ Add the following Image Scanning policies in Sysdig secure:
 We'll use Warn in this exercise, but this should be a Stop in production.
 
 
-## Filtering known vulnerabilities
+## Filtering known vulnerabilities
 
 CVE-2019-1010083 affects flask <1.0, a crafted JSON can be used to cause a DOS.
 https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010083
@@ -37,7 +37,7 @@ https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010083
 * Action: Warn
 
 
-## Detecting a malicious library
+## Detecting a malicious library
 
 * Gate: Package
 * Sub-type: Blacklist
@@ -62,7 +62,7 @@ https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010083
 * Action: Warn
 
 
-## Extra exercise: Block port 22
+## Extra exercise: Block port 22
 
 The dockerfile is exposing the port 22. This would allow anyone to log in into the container.
 
@@ -75,7 +75,7 @@ Tasks:
 3. Confirm in the build results that the policy rule for the port 22 has been activated.
 
 
-## Extra exercise: Block openssh-server
+## Extra exercise: Block openssh-server
 
 Apart from exposing the port 22, we should block the actual service providing ssh.
 
@@ -88,6 +88,6 @@ Tasks:
 3. Confirm in the build results that the policy rule has been activated.
 
 
-## Extra exercise: Clean the image
+## Extra exercise: Clean the image
 
 Can you remove all the security threats from this image, so it can pass the image scanning?
