@@ -20,7 +20,8 @@ spec:
    }
 
     parameters { 
-        string(name: 'DOCKER_REPOSITORY', defaultValue: 'sysdigcicd/cronagent', description: 'Name of the image to be built (e.g.: sysdiglabs/dummy-vuln-app)') 
+        string(name: 'DOCKER_REPOSITORY_STAGE', defaultValue: 'sysdigcicd/cronagent-staging', description: 'Name of the image to be built for scanning (e.g.: sysdiglabs/dummy-vuln-app-staging)') 
+        string(name: 'DOCKER_REPOSITORY_PROD', defaultValue: 'sysdigcicd/cronagent', description: 'Name of the image to be built for production (e.g.: sysdiglabs/dummy-vuln-app)') 
     }
     
     environment {
@@ -38,22 +39,32 @@ spec:
         stage('Build Image') {
             steps {
                 container("img") {
-                    sh "img build -f Dockerfile -t ${params.DOCKER_REPOSITORY} ."
+                    sh "img build -f Dockerfile -t ${params.DOCKER_REPOSITORY_STAGE} ."
                 }
             }
         }
-        stage('Push Image') {
+        stage('Push Staging Image') {
             steps {
                 container("img") {
                     sh "img login -u ${DOCKER_USR} -p ${DOCKER_PSW}"
-                    sh "img push ${params.DOCKER_REPOSITORY}"
-                    sh "echo ${params.DOCKER_REPOSITORY} > sysdig_secure_images"
+                    sh "img push ${params.DOCKER_REPOSITORY_STAGE}"
+                    sh "echo ${params.DOCKER_REPOSITORY_STAGE} > sysdig_secure_images"
                 }
             }
         }
         stage('Scanning Image') {
             steps {
                 sysdigSecure engineCredentialsId: 'sysdig-secure-api-credentials', name: 'sysdig_secure_images'
+            }
+        }
+        stage('Push Production Image') {
+            steps {
+                container("img") {
+                    sh "img login -u ${DOCKER_USR} -p ${DOCKER_PSW}"
+                    sh "img tag ${params.DOCKER_REPOSITORY_STAGE} ${params.DOCKER_REPOSITORY_PROD}"
+                    sh "img push ${params.DOCKER_REPOSITORY_PROD}"
+                    sh "echo ${params.DOCKER_REPOSITORY_PROD} > sysdig_secure_images"
+                }
             }
         }
    }
