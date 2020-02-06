@@ -20,8 +20,8 @@ spec:
    }
 
     parameters { 
-        string(name: 'DOCKER_REPOSITORY_STAGE', defaultValue: 'sysdigcicd/cronagent-staging', description: 'Name of the image to be built for scanning (e.g.: sysdiglabs/dummy-vuln-app-staging)') 
-        string(name: 'DOCKER_REPOSITORY_PROD', defaultValue: 'sysdigcicd/cronagent', description: 'Name of the image to be built for production (e.g.: sysdiglabs/dummy-vuln-app)') 
+        string(name: 'DOCKER_REPOSITORY_STAGE', defaultValue: '', description: 'Name of the image to be built for scanning (e.g.: sysdigworkshop/dummy-staging)') 
+        string(name: 'DOCKER_REPOSITORY_PROD', defaultValue: '', description: 'Name of the image to be built for production (e.g.: sysdigworkshop/dummy)') 
     }
     
     environment {
