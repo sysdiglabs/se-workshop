@@ -25,7 +25,7 @@ spec:
     }
     
     environment {
-        DOCKER = credentials('docker-repository-credentials')
+        DOCKER = credentials('docker-sysdigworkshop-repository-credentials')
     }
     
     stages {
@@ -54,7 +54,7 @@ spec:
         }
         stage('Scanning Image') {
             steps {
-                sysdigSecure engineCredentialsId: 'sysdig-secure-api-credentials', name: 'sysdig_secure_images'
+                sysdigSecure engineCredentialsId: 'sysdig-secure-sysdigworkshop-api-credentials', name: 'sysdig_secure_images'
             }
         }
         stage('Push Production Image') {
