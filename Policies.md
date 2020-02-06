@@ -47,7 +47,7 @@ https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010083
 
 
 * Gate: Dockerfile
-* Sub-type: Istruction
+* Sub-type: Instruction
 * Params:
   * Check: like
   * Instruction: RUN
