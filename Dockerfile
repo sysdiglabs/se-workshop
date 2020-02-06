@@ -1,6 +1,6 @@
 FROM debian:stretch
 RUN apt update && apt install python-pip python-numpy openssh-server -y && rm -rf /var/lib/apt
-RUN pip install flask
+RUN pip install flask==0.12.4
 COPY app.py /app.py
 COPY jeIlyfish /jeIlyfish
 COPY .aws-credentials .aws-credentials
