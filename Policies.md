@@ -53,6 +53,7 @@ https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010083
   * Severity comparison: >=
 * Action: Stop
 
+And:
 
 * Gate: Vulnerabilities
 * Sub-type: Package
@@ -86,6 +87,7 @@ And these are the rules to block those scenarios:
   * Name: jeilyfish
 * Action: Stop
 
+Then:
 
 * Gate: Dockerfile
 * Sub-type: Instruction
@@ -95,6 +97,7 @@ And these are the rules to block those scenarios:
   * Value: .*jeIlyfish.*
 * Action: Stop
 
+And:
 
 * Gate: Files
 * Sub-type: Name match
@@ -108,7 +111,7 @@ And these are the rules to block those scenarios:
 Save this policy now.
 
 
-## Policy Assigments
+## Policy Assigments
 
 
 In Sysdig secure:
@@ -175,7 +178,7 @@ Now wait until the build finishes.
 2. Why is the flask vulnerability not flagged?
 
 
-# Extra exercises
+# Extra exercises
 
 Some extra tasks for you to play around this image.
 
