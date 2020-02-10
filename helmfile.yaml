@@ -32,12 +32,3 @@ releases:
         nodePort: 31337
       agent:
         privileged: false
-        volumes:
-        - type: HostPath
-          volumeName: docker-sock
-          hostPath: /var/run/docker.sock
-          mountPath: /var/run/docker.sock
-        - type: HostPath
-          volumeName: docker-bin
-          hostPath: /usr/bin/docker
-          mountPath: /usr/bin/docker
