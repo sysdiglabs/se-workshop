@@ -4,7 +4,7 @@ data:
     new_k8s: true
     security:
       enabled: true
-    k8s_cluster_name: lab-kube-aws
+    k8s_cluster_name: foo-bar
     metrics_excess_log: true
     metrics_filter:
     - include: apiserver_request_total
