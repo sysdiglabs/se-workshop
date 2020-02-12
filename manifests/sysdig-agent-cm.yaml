@@ -2,16 +2,13 @@ apiVersion: v1
 data:
   dragent.yaml: |
     new_k8s: true
-    security:
-      enabled: true
     k8s_cluster_name: lab-kube-aws
     metrics_excess_log: true
+    app_checks_enabled: false
     metrics_filter:
-    - include: apiserver_request_total
-    percentiles:
-    - 50
-    - 95
-    - 99
+    - include: "nginx*"
+    - include: "redis*"
+    - include: "node*"
     prometheus:
       enabled: true
       histograms: true
@@ -24,6 +21,11 @@ data:
           conf:
             port: 9113
             host: 127.0.0.1
+      - include:
+          kubernetes.pod.annotation.prometheus.io/scrape: true
+          conf:
+              path: "{kubernetes.pod.annotation.prometheus.io/path}"
+              port: "{kubernetes.pod.annotation.prometheus.io/port}"
     snaplen: 512
     tags: role:cluster
 kind: ConfigMap
