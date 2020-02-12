@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   dragent.yaml: |
     new_k8s: true
-    k8s_cluster_name: lab-kube-aws
+    k8s_cluster_name: foo-bar
     metrics_excess_log: true
     app_checks_enabled: false
     metrics_filter:
